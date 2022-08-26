@@ -20,7 +20,7 @@ pipeline {
         // }
         stage('check for leaks') {
             steps {
-                sh 'git clone https://github.com/"$registry".git && cd $registry && gitleaks detect -v'
+                sh 'git clone https://github.com/"$registry".git && cd drone-test && gitleaks detect -v'
                 // sh 'gitleaks detect -v'
             }
         }
