@@ -20,8 +20,8 @@ pipeline {
         // }
         stage('check for leaks') {
             steps {
-                // sh 'git clone https://github.com/turik207/$registry && cd $registry && gitleaks detect -v'
-                sh 'gitleaks detect -v'
+                sh 'git clone https://github.com/turik207/$registry && cd $registry && gitleaks detect -v'
+                // sh 'gitleaks detect -v'
             }
         }
         stage('Cleaning up') { 
