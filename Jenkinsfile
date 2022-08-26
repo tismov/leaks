@@ -1,6 +1,8 @@
 pipeline { 
     environment { 
-    registry = "turik207/kube-deploy" 
+    repo = "kube-deploy"
+    registry = "turik207/'$repo'"
+    
     }
     agent {
         docker { 
@@ -11,15 +13,9 @@ pipeline {
     stages { 
         stage('check for leaks') {
             steps {
-                sh 'git clone https://github.com/"$registry".git && cd kube-deploy  && gitleaks detect -v'
-                // sh 'gitleaks detect -v'
+                sh 'git clone https://github.com/"$registry".git && cd $repo  && gitleaks detect -v'
             }
         }
-        // stage('Cleaning up') { 
-        //     steps { 
-        //         sh "docker rmi $registry" 
-        //     }
-        // } 
 
     }
 }
