@@ -1,6 +1,6 @@
 pipeline { 
     environment { 
-    registry = "turik207/app_helm" 
+    registry = "turik207/kube-deploy " 
     }
     agent {
         docker { 
@@ -11,7 +11,7 @@ pipeline {
     stages { 
         stage('check for leaks') {
             steps {
-                sh 'git clone https://github.com/"$registry".git && cd app_helm && gitleaks detect -v'
+                sh 'git clone https://github.com/"$registry".git && cd kube-deploy  && gitleaks detect -v'
                 // sh 'gitleaks detect -v'
             }
         }
