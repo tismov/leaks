@@ -1,8 +1,8 @@
 pipeline { 
-    environment { 
+    environment {
+    user = "turik207"
     repo = "app_helm"
-    registry = "turik207/$repo"
-    
+    registry = "$user/$repo"
     }
     agent {
         docker { 
@@ -13,9 +13,8 @@ pipeline {
     stages { 
         stage('check for leaks') {
             steps {
-                sh 'git clone https://github.com/"$registry".git && cd $repo  && gitleaks detect -v'
+                sh 'git clone https://github.com/"$registry".git && gitleaks detect -v ./$repo'
             }
         }
-
     }
 }
