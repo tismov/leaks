@@ -1,6 +1,6 @@
 pipeline { 
     environment { 
-    registry = "turik207/kube-deploy " 
+    registry = "turik207/kube-deploy" 
     }
     agent {
         docker { 
