@@ -1,6 +1,6 @@
 pipeline { 
     environment { 
-    repo = "kube-deploy"
+    repo = "app_helm"
     registry = "turik207/$repo"
     
     }
