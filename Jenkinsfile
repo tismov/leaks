@@ -15,11 +15,11 @@ pipeline {
                 // sh 'gitleaks detect -v'
             }
         }
-        stage('Cleaning up') { 
-            steps { 
-                sh "docker rmi $registry" 
-            }
-        } 
+        // stage('Cleaning up') { 
+        //     steps { 
+        //         sh "docker rmi $registry" 
+        //     }
+        // } 
 
     }
 }
