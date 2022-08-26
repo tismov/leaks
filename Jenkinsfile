@@ -3,8 +3,14 @@ pipeline {
     registry = "turik207/drone-test" 
     }
 
+    // agent {
+    //     docker { image 'zricethezav/gitleaks' }
+    // }
     agent {
-        docker { image 'zricethezav/gitleaks' }
+        docker { 
+            image 'zricethezav/gitleaks' 
+            args '--entrypoint=""'
+        }
     }
     stages { 
         // stage('Cloning from my Github') { 
