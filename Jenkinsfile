@@ -1,7 +1,7 @@
 pipeline { 
     environment {
     user = "turik207"
-    repo = "petclinic-db"
+    repo = "kube-deploy"
     registry = "$user/$repo"
     }
     agent {
