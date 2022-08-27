@@ -14,21 +14,20 @@ pipeline {
         stage('check for leaks') {
             steps {
                 sh 'git clone https://github.com/"$registry".git && cd ./$repo && gitleaks detect -v'
-                }
             }
         }
     }
-post {
-    success {
-        // slackSend message: "Gitleaks didn't find any secret leaks - ${env.JOB_NAME} ${env.BUILD_NUMBER} (<${env.BUILD_URL}|Open>)"
-        slackSend message: "${custom_msg()}"
+    post {
+        success {
+            // slackSend message: "Gitleaks didn't find any secret leaks - ${env.JOB_NAME} ${env.BUILD_NUMBER} (<${env.BUILD_URL}|Open>)"
+            slackSend message: "${custom_msg()}"
     }
-    failure {
-        slackSend message: "${custom_msg()}"
-        // slackSend message: "Build failed - ${env.JOB_NAME} ${env.BUILD_NUMBER} (<${env.BUILD_URL}|Open>)"
-    }
+        failure {
+            slackSend message: "${custom_msg()}"
+            // slackSend message: "Build failed - ${env.JOB_NAME} ${env.BUILD_NUMBER} (<${env.BUILD_URL}|Open>)"
+      }
+   }
 }
-
 def custom_msg()
 {
   def JENKINS_URL= "${env.BUILD_URL}"
