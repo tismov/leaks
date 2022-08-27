@@ -17,9 +17,9 @@ pipeline {
             }
         }
     }
-    failure {
-        //  sh "echo 'Pipeline failed'"
-         // Notify in Slack
-         slackSend "Build Started - ${env.JOB_NAME} ${env.BUILD_NUMBER} (<${env.BUILD_URL}|Open>)"
-    }
+    post {
+        failure {
+            slackSend "Build Started - ${env.JOB_NAME} ${env.BUILD_NUMBER} (<${env.BUILD_URL}|Open>)"
+      }
+   }
 }
