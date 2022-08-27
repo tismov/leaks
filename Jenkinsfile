@@ -1,7 +1,7 @@
 pipeline { 
     environment {
     user = "turik207"
-    repo = "drone-test"
+    repo = "petclinic-db"
     registry = "$user/$repo"
     }
     agent {
