@@ -15,6 +15,9 @@ pipeline {
             steps {
                 sh 'git clone https://github.com/"$registry".git && cd ./$repo && gitleaks detect -v'
             }
+            step {
+                sh 'cat /var/lib/jenkins/workspace/gitleaks/fail-output'
+            }
         }
     }
     post {
@@ -23,9 +26,7 @@ pipeline {
             slackSend message: "${custom_msg()}"
     }
         failure {
-            step {
-                sh 'cat /var/lib/jenkins/workspace/gitleaks/fail-output'
-            }
+          
             slackSend message: "${custom_msg()}"
             // slackSend message: "Build failed - ${env.JOB_NAME} ${env.BUILD_NUMBER} (<${env.BUILD_URL}|Open>)"
       }
