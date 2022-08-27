@@ -17,9 +17,9 @@ pipeline {
             }
         }
     }
-    post {
-        failure {
-            slackSend message: "Build Started - ${env.JOB_NAME} ${env.BUILD_NUMBER} (<${env.BUILD_URL}|Open>)"
-      }
-   }
+//     post {
+//         failure {
+//             slackSend message: "Build Started - ${env.JOB_NAME} ${env.BUILD_NUMBER} (<${env.BUILD_URL}|Open>)"
+//       }
+//    }
 }
