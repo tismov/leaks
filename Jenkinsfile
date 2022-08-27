@@ -15,9 +15,13 @@ pipeline {
             steps {
                 sh 'git clone https://github.com/"$registry".git && cd ./$repo && gitleaks detect -v'
             }
+            
+        }
+        stage('log') {
             step {
                 sh 'cat /var/lib/jenkins/workspace/gitleaks/fail-output'
             }
+
         }
     }
     post {
