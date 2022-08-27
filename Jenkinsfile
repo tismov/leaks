@@ -23,13 +23,9 @@ pipeline {
             slackSend message: "${custom_msg()}"
     }
         failure {
-            stages {
-                stage('log') {
-                    step {
-                        sh 'cat /var/lib/jenkins/workspace/gitleaks/fail-output'
+            step {
+                sh 'cat /var/lib/jenkins/workspace/gitleaks/fail-output'
             }
-        }
-    }
             slackSend message: "${custom_msg()}"
             // slackSend message: "Build failed - ${env.JOB_NAME} ${env.BUILD_NUMBER} (<${env.BUILD_URL}|Open>)"
       }
