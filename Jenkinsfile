@@ -18,7 +18,7 @@ pipeline {
             
         }
         stage('log') {
-            step {
+            steps {
                 sh 'cat /var/lib/jenkins/workspace/gitleaks/fail-output'
             }
 
