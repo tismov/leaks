@@ -13,13 +13,13 @@ pipeline {
     stages { 
         stage('check for leaks') {
             steps {
-                sh 'echo ${USER} && git clone https://github.com/"$registry".git && cd ./$repo && gitleaks detect -v'
+                sh 'git clone https://github.com/"$registry".git && cd ./$repo && gitleaks detect -v'
             }
         }
     }
-//     post {
-//         failure {
-//             slackSend message: "Build Started - ${env.JOB_NAME} ${env.BUILD_NUMBER} (<${env.BUILD_URL}|Open>)"
-//       }
-//    }
+    post {
+        failure {
+            slackSend message: "Build Started - ${env.JOB_NAME} ${env.BUILD_NUMBER} (<${env.BUILD_URL}|Open>)"
+      }
+   }
 }
