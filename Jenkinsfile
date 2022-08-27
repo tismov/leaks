@@ -33,9 +33,7 @@ def custom_msg()
   def JENKINS_URL= "${env.BUILD_URL}"
   def JOB_NAME = env.JOB_NAME
   def BUILD_ID= env.BUILD_ID
-  def JENKINS_LOG= " FAILED: Job [${env.JOB_NAME}] Logs path: ${JENKINS_URL}/job/${JOB_NAME}/${BUILD_ID}/consoleText"
-  def FAIL_REASON= "" 
+  def FAIL_REASON= "tapildi"
+  def JENKINS_LOG= " FAILED: Job [${env.JOB_NAME}] Reason [${FAIL_REASON}] Logs path: ${JENKINS_URL}/job/${JOB_NAME}/${BUILD_ID}/consoleText "
   return JENKINS_LOG
-  return JENKINS_URL
-  return FAIL_REASON
 }
