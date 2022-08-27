@@ -15,13 +15,7 @@ pipeline {
             steps {
                 sh 'git clone https://github.com/"$registry".git && cd ./$repo && gitleaks detect -v'
             }
-            
         }
-        stage('log') {
-            steps {
-                sh 'cat /var/lib/jenkins/workspace/gitleaks/fail-output'
-            }
-
         }
     }
     post {
@@ -35,13 +29,13 @@ pipeline {
             // slackSend message: "Build failed - ${env.JOB_NAME} ${env.BUILD_NUMBER} (<${env.BUILD_URL}|Open>)"
       }
    }
-}
+
 def custom_msg()
 {
   def JENKINS_URL= "${env.BUILD_URL}"
   def JOB_NAME = env.JOB_NAME
   def BUILD_ID= env.BUILD_ID
-  def FAIL_REASON= "tapildi"
+  def FAIL_REASON= "${currentBuild.rawBuild.getLog(100)}"
   def JENKINS_LOG= " FAILED: Job [${env.JOB_NAME}] Reason:${FAIL_REASON} Logs path: ${JENKINS_URL}/job/${JOB_NAME}/${BUILD_ID}/consoleText "
   return JENKINS_LOG
 }
