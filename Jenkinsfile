@@ -18,16 +18,16 @@ pipeline {
             }
         }
     }
-    post {
-        success {
-            // slackSend message: "Gitleaks didn't find any secret leaks - ${env.JOB_NAME} ${env.BUILD_NUMBER} (<${env.BUILD_URL}|Open>)"
-            slackSend message: "${custom_msg()}"
-        }
-        failure {
-            slackSend message: "${custom_msg()}"
-            // slackSend message: "Build failed - ${env.JOB_NAME} ${env.BUILD_NUMBER} (<${env.BUILD_URL}|Open>)"
-        }
+post {
+    success {
+        // slackSend message: "Gitleaks didn't find any secret leaks - ${env.JOB_NAME} ${env.BUILD_NUMBER} (<${env.BUILD_URL}|Open>)"
+        slackSend message: "${custom_msg()}"
     }
+    failure {
+        slackSend message: "${custom_msg()}"
+        // slackSend message: "Build failed - ${env.JOB_NAME} ${env.BUILD_NUMBER} (<${env.BUILD_URL}|Open>)"
+    }
+}
 
 def custom_msg()
 {
