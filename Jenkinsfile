@@ -30,9 +30,10 @@ pipeline {
 }
 def custom_msg()
 {
-  def JENKINS_URL= "localhost:8888"
+  def JENKINS_URL= "${env.BUILD_URL}"
   def JOB_NAME = env.JOB_NAME
   def BUILD_ID= env.BUILD_ID
   def JENKINS_LOG= " FAILED: Job [${env.JOB_NAME}] Logs path: ${JENKINS_URL}/job/${JOB_NAME}/${BUILD_ID}/consoleText"
+  def FAIL_REASON= "" 
   return JENKINS_LOG
 }
