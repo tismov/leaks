@@ -13,7 +13,7 @@ pipeline {
     stages { 
         stage('check for leaks') {
             steps {
-                sh 'git clone https://github.com/"$registry".git && cd ./$repo && gitleaks detect -v && git log -L {StartLine,EndLine}:{File} {Commit}'
+                sh 'git clone https://github.com/"$registry".git && cd ./$repo && gitleaks detect -v -r .github/gitleaks.config'
             }
         }
     }
