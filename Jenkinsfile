@@ -28,7 +28,7 @@ pipeline {
     }
         failure {
             // slackSend message: "${custom_msg()}"
-            slackSend (channel: '#jenkins_gitleaks', color: '#FF0000', message: ${custom_msg()} )
+            slackSend (channel: '#jenkins_gitleaks', color: '#FF0000', message: "${custom_msg()}" )
       }
    }
 }
