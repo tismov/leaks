@@ -20,10 +20,12 @@ pipeline {
     post {
         success {
             // slackSend message: "Gitleaks didn't find any secret leaks - ${env.JOB_NAME} ${env.BUILD_NUMBER} (<${env.BUILD_URL}|Open>)"
-            slackSend message: "${custom_msg()}"
+            // slackSend message: "${custom_msg()}"
+            slackSend message: "succ"
     }
         failure {
-            slackSend message: "${custom_msg()}"
+            slackSend message: "fail"
+            // slackSend message: "${custom_msg()}"
             // slackSend message: "Build failed - ${env.JOB_NAME} ${env.BUILD_NUMBER} (<${env.BUILD_URL}|Open>)"
       }
    }
