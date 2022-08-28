@@ -38,15 +38,18 @@ pipeline {
 //   return JENKINS_LOG
 // }
 
-BUILD_STRING = "no leaks found"
-def custom_msg() {
-def job = env.JOB_NAME
-for (build in job.builds) {
-  def log = build.log
-  if (log.contains(BUILD_STRING)) {
-    println "${job.name}: ${build.id}"
+def directory = "${env.WORKSPACE}/${env.JOB_NAME}" // change name here
+stage('capture console output') {
+  script {
+    def logContent = Jenkins.getInstance().getItemByFullName(env.JOB_NAME).getBuildByNumber(
+    Integer.parseInt(env.BUILD_NUMBER)).logFile.text
+    // copy the log in the job's own workspace
+    writeFile file: directory + "/fail-output",
+    text: logContent
   }
-def JENKINS_LOG= " FAILED: Job [${env.JOB_NAME}] Reason: tapildi Logs path: ${JENKINS_URL}/job/${JOB_NAME}/${BUILD_ID}/consoleText "
-return JENKINS_LOG
-}
+  def consoleOutput = readFile directory + '/fail-output'
+  echo 'Console output saved in the fail-output file'
+  echo '--------------------------------------'
+  echo consoleOutput
+  echo '--------------------------------------'
 }
