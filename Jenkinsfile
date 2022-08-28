@@ -22,7 +22,7 @@ pipeline {
             slackSend (channel: '#jenkins_gitleaks', color: '#0000FF', message: "Starting check for leaks - ${env.JOB_NAME} (<${env.BUILD_URL}|Open>)")
         }
         success {
-            slackSend (channel: '#jenkins_gitleaks', color: '#00FF00', message: "SUCCESSFUL: Gitleaks didn't find any secret leaks <<$repo>> repo")
+            slackSend (channel: '#jenkins_gitleaks', color: '#00FF00', message: "SUCCESSFUL: Gitleaks didn't find any secrets or passwords leaks in <<$repo>> repo")
     }
         failure {
             slackSend (channel: '#jenkins_gitleaks', color: '#FF0000', message: "${custom_msg()}" )
