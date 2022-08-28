@@ -1,7 +1,7 @@
 pipeline { 
     environment {
     user = "turik207"
-    repo = "app_helm"
+    repo = "kube-deploy"
     registry = "$user/$repo"
     }
     agent {
@@ -25,6 +25,7 @@ pipeline {
             // slackSend message: "Gitleaks didn't find any secret leaks - ${env.JOB_NAME} ${env.BUILD_NUMBER} (<${env.BUILD_URL}|Open>)"
             // slackSend message: "${custom_msg()}"
             slackSend message: "Success"
+            slackSend channel: "#jenkins_gitleaks_test"
     }
         failure {
             slackSend message: "${custom_msg()}"
