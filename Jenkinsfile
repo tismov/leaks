@@ -40,7 +40,7 @@ pipeline {
 
 BUILD_STRING = "no leaks found"
 def custom_msg() {
-def job = Jenkins.instance.items.find { it.name == JOB_NAME }
+def job = env.JOB_NAME
 for (build in job.builds) {
   def log = build.log
   if (log.contains(BUILD_STRING)) {
