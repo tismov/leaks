@@ -24,8 +24,7 @@ pipeline {
         success {
             // slackSend message: "Gitleaks didn't find any secret leaks - ${env.JOB_NAME} ${env.BUILD_NUMBER} (<${env.BUILD_URL}|Open>)"
             // slackSend message: "${custom_msg()}"
-            slackSend message: "Success"
-            slackSend channel: "#jenkins_gitleaks_test"
+            slackSend message: "channel: '#jenkins_gitleaks_test', color: '#00FF00', Success"
     }
         failure {
             slackSend message: "${custom_msg()}"
