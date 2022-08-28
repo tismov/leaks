@@ -28,12 +28,25 @@ pipeline {
       }
    }
 }
-def custom_msg()
-{
-  def JENKINS_URL= "${env.BUILD_URL}"
-  def JOB_NAME = env.JOB_NAME
-  def BUILD_ID= env.BUILD_ID
-  def FAIL_REASON= "tapildi"
-  def JENKINS_LOG= " FAILED: Job [${env.JOB_NAME}] Reason:${FAIL_REASON} Logs path: ${JENKINS_URL}/job/${JOB_NAME}/${BUILD_ID}/consoleText "
-  return JENKINS_LOG
+// def custom_msg()
+// {
+//   def JENKINS_URL= "${env.BUILD_URL}"
+//   def JOB_NAME = env.JOB_NAME
+//   def BUILD_ID= env.BUILD_ID
+//   def FAIL_REASON= "tapildi"
+//   def JENKINS_LOG= " FAILED: Job [${env.JOB_NAME}] Reason:${FAIL_REASON} Logs path: ${JENKINS_URL}/job/${JOB_NAME}/${BUILD_ID}/consoleText "
+//   return JENKINS_LOG
+// }
+
+BUILD_STRING = "no leaks found"
+def custom_msg() {
+def job = Jenkins.instance.items.find { it.name == JOB_NAME }
+for (build in job.builds) {
+  def log = build.log
+  if (log.contains(BUILD_STRING)) {
+    println "${job.name}: ${build.id}"
+  }
+def JENKINS_LOG= " FAILED: Job [${env.JOB_NAME}] Reason: tapildi Logs path: ${JENKINS_URL}/job/${JOB_NAME}/${BUILD_ID}/consoleText "
+return JENKINS_LOG
+}
 }
