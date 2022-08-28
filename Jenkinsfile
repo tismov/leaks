@@ -19,7 +19,8 @@ pipeline {
     }
     post {
         always { 
-            slackSend message: "Start chenking for leaks - ${env.JOB_NAME} ${env.BUILD_NUMBER} (<${env.BUILD_URL}|Open>)"
+            // slackSend message: "Start chenking for leaks - ${env.JOB_NAME} (<${env.BUILD_URL}|Open>)"
+            slackSend (channel: '#jenkins_gitleaks', color: '#0000FF', message: "Start chenking for leaks - ${env.JOB_NAME} (<${env.BUILD_URL}|Open>)")
         }
         success {
             // slackSend message: "Gitleaks didn't find any secret leaks - ${env.JOB_NAME} ${env.BUILD_NUMBER} (<${env.BUILD_URL}|Open>)"
